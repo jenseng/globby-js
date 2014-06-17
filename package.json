@@ -1,0 +1,28 @@
+{
+  "name": "globby",
+  "description": "a .gitignore-compatible file globber",
+  "version": "0.0.0",
+  "author": "Jon Jensen",
+  "homepage": "https://github.com/jenseng/globby-js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jenseng/globby-js.git"
+  },
+  "main": "./dist/lib/main",
+  "devDependencies": {
+    "chai": "~1.8.1",
+    "grunt": "~0.4.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-es6-module-transpiler": "~0.6.0",
+    "matchdep": "~0.3.0",
+    "mocha": "~1.16.2"
+  },
+  "scripts": {
+    "test": "grunt test && mocha tmp/test --recursive"
+  },
+  "dependencies": {
+    "glob": "^4.0.2"
+  }
+}
