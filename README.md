@@ -1,7 +1,9 @@
 # globby
 
 globby is a [`.gitignore`](http://www.kernel.org/pub/software/scm/git/docs/gitignore.html)-style
-file globber for JavaScript.
+file globber for JavaScript. It's *not* a general replacement for [glob](https://github.com/isaacs/node-glob),
+but it is potentially a better choice if you're globbing a large js
+project and applying a long list of exclusion patterns.
 
 ## Installation
 
@@ -49,10 +51,11 @@ or may not work in your version of git. These platform-dependent `.gitignore`
 behaviors are platform independent in globby and can always be used:
 
  * Recursive wildcards à la ant/zsh/node-glob. `**` matches directories recursively.
- * [glob(7)](https://www.kernel.org/doc/man-pages/online/pages/man7/glob.7.html)-style
-   bracket expressions, i.e. character classes, ranges, complementation, named
-   character classes, collating symbols and equivalence class expressions. Note
-   that the syntax for some of these is slightly different than what you would
+ * Basic [glob(7)](https://www.kernel.org/doc/man-pages/online/pages/man7/glob.7.html)-style
+   bracket expressions, i.e. character classes, ranges, and
+   complementation. Named character classes, collating symbols, and
+   equivalence class expressions are not yet supported. Note that the
+   syntax for some of these is slightly different than what you would
    find in regular expressions. Refer to [the documentation](https://www.kernel.org/doc/man-pages/online/pages/man7/glob.7.html)
    for more info.
 
