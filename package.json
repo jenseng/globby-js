@@ -21,8 +21,5 @@
   },
   "scripts": {
     "test": "grunt test && mocha tmp/test --recursive"
-  },
-  "dependencies": {
-    "glob": "^4.0.2"
   }
 }

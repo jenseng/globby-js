@@ -11,7 +11,7 @@ describe("Globby", function() {
     var result = Globby.select(["*rb"], files).
                         reject(["baz*"]).
                         select(["c"]).
-                        result;
+                        files;
     assert.deepEqual(
       result,
       ["foo/c/c/bar.rb"]
@@ -21,7 +21,7 @@ describe("Globby", function() {
   describe(".select", function() {
     context("a blank line", function() {
       it("should return nothing", function() {
-        var files = filesFor("foo");
+        var files = filesFor(["foo"]);
         assert.deepEqual(
           select([""], files),
           []
@@ -31,7 +31,7 @@ describe("Globby", function() {
 
     context("a comment", function() {
       it("should return nothing", function() {
-        var files = filesFor("foo");
+        var files = filesFor(["foo"]);
         assert.deepEqual(
           select(["#"], files),
           []
@@ -90,7 +90,7 @@ describe("Globby", function() {
         var files = filesFor(["foo/bar", "foo/baz"]);
         assert.deepEqual(
           select(["b?z"], files),
-          "foo/baz"
+          ["foo/baz"]
         );
       });
 
@@ -117,7 +117,7 @@ describe("Globby", function() {
       it("should return matching files", function() {
         var files = filesFor(["boo", "fob", "f0o", "foo/bar", "poo/baz"]);
         assert.deepEqual(
-          select(["[e-g][0-9[:alpha:]][!b]"], files),
+          select(["[e-g][0-9a-z][!b]"], files),
           ["f0o", "foo/bar"]
         );
       });
@@ -125,7 +125,7 @@ describe("Globby", function() {
   });
 
   function select(patterns, files) {
-    return Globby.select(patterns, files).result;
+    return Globby.select(patterns, files).files;
   }
 
   function filesFor(files) {
@@ -139,7 +139,7 @@ describe("Globby", function() {
       path = files[i];
       while (path.match(/\/[^\/]+$/)) {
         path = path.replace(/\/[^\/]+$/, '');
-        dirs.push(path);
+        dirs.push(path + "/");
       }
     }
     dirs = uniq(dirs.sort());
