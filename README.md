@@ -17,13 +17,13 @@ not to be confused with the [other globby](https://github.com/sindresorhus/globb
     var Globby = require('gglobby');
 
     // all files matched by the rules
-    Globby.select(rules).result
+    Globby.select(rules).files;
 
     // all other files
-    Globby.reject(rules).result
+    Globby.reject(rules).files;
 
     // ooh chaining!
-    Globby.select(rules).reject(other_rules).result
+    Globby.select(rules).reject(other_rules).files;
 
 ### An example:
 
