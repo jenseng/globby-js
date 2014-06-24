@@ -5,11 +5,15 @@ file globber for JavaScript. It's *not* a general replacement for [glob](https:/
 but it is potentially a better choice if you're globbing a large js
 project and applying a long list of exclusion patterns.
 
+not to be confused with the [other globby](https://github.com/sindresorhus/globby).
+
 ## Installation
 
-`npm install globby`
+`npm install gglobby`
 
 ## Usage
+
+    var Globby = require('gglobby');
 
     // all files matched by the rules
     Globby.select(rules).result
@@ -58,6 +62,10 @@ behaviors are platform independent in globby and can always be used:
    syntax for some of these is slightly different than what you would
    find in regular expressions. Refer to [the documentation](https://www.kernel.org/doc/man-pages/online/pages/man7/glob.7.html)
    for more info.
+
+## Related Projects
+
+* [globby(.rb)](https://github.com/jenseng/globby)
 
 ## License
 
