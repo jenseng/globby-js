@@ -5,7 +5,7 @@ file globber for JavaScript. It's *not* a general replacement for [glob](https:/
 but it is potentially a better choice if you're globbing a large js
 project and applying a long list of exclusion patterns.
 
-not to be confused with the [other globby](https://github.com/sindresorhus/globby). sadlol story [here](https://github.com/jenseng/globby-js/commits/a48af78)
+not to be confused with the [other globby](https://github.com/sindresorhus/globby). sadlol story [here](https://github.com/jenseng/globby-js/commit/a48af78)
 (i thought i had learned my lesson after the i18nline/i18nliner fiasco, but apparently not).
 
 ## Installation
