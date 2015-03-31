@@ -5,6 +5,28 @@ import GlObject from "../lib/globject";
 import {uniq} from "../lib/utils";
 import {assert} from "chai";
 
+function select(patterns, files) {
+  return Globby.select(patterns, files).files;
+}
+
+function filesFor(files) {
+  var dirs = [];
+  var i;
+  var len;
+  var path;
+
+  files = files.sort();
+  for (i = 0, len = files.length; i < len; i++) {
+    path = files[i];
+    while (path.match(/\/[^\/]+$/)) {
+      path = path.replace(/\/[^\/]+$/, '');
+      dirs.push(path + "/");
+    }
+  }
+  dirs = uniq(dirs.sort());
+  return new GlObject(files, dirs);
+}
+
 describe("Globby", function() {
   it("should support chaining", function() {
     var files = filesFor(["foo/bar.rb", "foo/baz.rb", "foo/c/bar.html", "foo/c/c/bar.rb"]);
@@ -123,27 +145,5 @@ describe("Globby", function() {
       });
     });
   });
-
-  function select(patterns, files) {
-    return Globby.select(patterns, files).files;
-  }
-
-  function filesFor(files) {
-    var dirs = [];
-    var i;
-    var len;
-    var path;
-
-    files = files.sort();
-    for (i = 0, len = files.length; i < len; i++) {
-      path = files[i];
-      while (path.match(/\/[^\/]+$/)) {
-        path = path.replace(/\/[^\/]+$/, '');
-        dirs.push(path + "/");
-      }
-    }
-    dirs = uniq(dirs.sort());
-    return new GlObject(files, dirs);
-  }
 });
 

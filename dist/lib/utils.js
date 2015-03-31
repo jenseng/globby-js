@@ -1,11 +1,14 @@
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 function uniq(source) {
   var result = [];
   var i;
   var len;
   for (i = 0, len = source.length; i < len; i++) {
-    if (!i || source[i - 1] !== source[i])
-      result.push(source[i]);
+    if (!i || source[i - 1] !== source[i]) result.push(source[i]);
   }
   return result;
 }
@@ -21,8 +24,7 @@ function except(source, others) {
   }
   for (i = 0, len = source.length; i < len; i++) {
     item = source[i];
-    if (!otherMap[item])
-      result.push(item);
+    if (!otherMap[item]) result.push(item);
   }
   return result;
 }
@@ -38,8 +40,7 @@ function grep(source, pattern) {
   var len;
   for (i = 0, len = source.length; i < len; i++) {
     item = source[i];
-    if (item.match(pattern))
-      result.push(item);
+    if (item.match(pattern)) result.push(item);
   }
   return result;
 }

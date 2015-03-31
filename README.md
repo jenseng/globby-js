@@ -70,4 +70,4 @@ behaviors are platform independent in globby and can always be used:
 
 ## License
 
-Copyright (c) 2014 Jon Jensen, released under the MIT license
+Copyright (c) 2015 Jon Jensen, released under the MIT license

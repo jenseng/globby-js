@@ -1,5 +1,8 @@
 "use strict";
-var fs = require("fs")["default"] || require("fs");
+
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var fs = _interopRequire(require("fs"));
 
 function GlObject(files, dirs) {
   this.files = files || [];
@@ -7,7 +10,7 @@ function GlObject(files, dirs) {
 }
 
 function getFilesAndDirs(root, files, dirs) {
-  root = root == "." ? "" : root + "/";
+  root = root === "." ? "" : root + "/";
   files = files || [];
   dirs = dirs || [];
   var entries = fs.readdirSync(root || ".");
@@ -19,18 +22,18 @@ function getFilesAndDirs(root, files, dirs) {
     if (fs.statSync(root + entry).isDirectory()) {
       dirs.push(root + entry + "/");
       getFilesAndDirs(root + entry, files, dirs);
-    }
-    else
+    } else {
       files.push(root + entry);
+    }
   }
   return [files, dirs];
 }
 
-GlObject.all = function() {
+GlObject.all = function () {
   var result = getFilesAndDirs(".");
   var files = result[0];
   var dirs = result[1];
   return new GlObject(files, dirs);
 };
 
-exports["default"] = GlObject;
+module.exports = GlObject;

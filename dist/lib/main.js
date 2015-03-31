@@ -1,8 +1,15 @@
 "use strict";
-var Glob = require("./glob")["default"] || require("./glob");
-var GlObject = require("./globject")["default"] || require("./globject");
-var except = require("./utils").except;
-var merge = require("./utils").merge;
+
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var Glob = _interopRequire(require("./glob"));
+
+var GlObject = _interopRequire(require("./globject"));
+
+var _utils = require("./utils");
+
+var except = _utils.except;
+var merge = _utils.merge;
 
 function evaluatePattern(pattern, source, result) {
   var glob = new Glob(pattern);
@@ -21,12 +28,9 @@ function evaluatePattern(pattern, source, result) {
 
   dirMatches = glob.match(candidates.dirs);
   fileMatches = [];
-  if (!glob.isDirectory && (!glob.isExactMatch || !dirMatches.length))
-    fileMatches = glob.match(candidates.files);
-  if (dirMatches.length)
-    result.dirs = method(result.dirs, dirMatches);
-  if (fileMatches.length)
-    result.files = method(result.files, fileMatches);
+  if (!glob.isDirectory && (!glob.isExactMatch || !dirMatches.length)) fileMatches = glob.match(candidates.files);
+  if (dirMatches.length) result.dirs = method(result.dirs, dirMatches);
+  if (fileMatches.length) result.files = method(result.files, fileMatches);
 }
 
 function evaluatePatterns(patterns, source, result) {
@@ -46,7 +50,7 @@ function Chainable(files, dirs) {
 }
 
 var Globby = {
-  select: function(patterns, source) {
+  select: function select(patterns, source) {
     source = source || GlObject.all();
 
     var result = new GlObject();
@@ -70,22 +74,22 @@ var Globby = {
     return new Chainable(result.files, source.dirs);
   },
 
-  reject: function(patterns, source) {
+  reject: function reject(patterns, source) {
     source = source || GlObject.all();
     return new Chainable(except(source.files, this.select(patterns, source).files, source.dirs));
   }
 };
 
-Chainable.prototype.select = function(patterns) {
+Chainable.prototype.select = function (patterns) {
   return Globby.select(patterns, this.toGlObject());
 };
 
-Chainable.prototype.reject = function(patterns) {
+Chainable.prototype.reject = function (patterns) {
   return Globby.reject(patterns, this.toGlObject());
 };
 
-Chainable.prototype.toGlObject = function() {
+Chainable.prototype.toGlObject = function () {
   return new GlObject(this.files, this.dirs);
 };
 
-exports["default"] = Globby;
+module.exports = Globby;
