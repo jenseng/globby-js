@@ -1,7 +1,7 @@
 {
   "name": "gglobby",
   "description": "a .gitignore-compatible file globber",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Jon Jensen",
   "homepage": "https://github.com/jenseng/globby-js",
   "repository": {
